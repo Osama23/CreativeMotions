@@ -1,6 +1,12 @@
+import 'package:CreateMotionsTask/models/actors_model.dart';
 import 'package:flutter/material.dart';
 
 class CategorisList extends StatefulWidget {
+  final Actors actors;
+
+  CategorisList({
+    this.actors,
+  });
   @override
   _CategorisListState createState() => _CategorisListState();
 }
@@ -40,7 +46,7 @@ class _CategorisListState extends State<CategorisList> {
                 SizedBox(
                   width: 10,
                 ),
-                Text('Enter name'),
+                Text('passs name'),
               ],
             ),
           ),
