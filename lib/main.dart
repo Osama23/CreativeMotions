@@ -13,20 +13,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Creative Motions',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -55,14 +53,23 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black
-              ),
+                  color: Colors.black),
             ),
-            Image.asset(
-              'assets/man.png',
-              fit: BoxFit.cover,
-              width: 45,
-              height: 45,
+            CircleAvatar(
+              radius: 30,
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/man.png',
+                  height: 45,
+                  width: 45,
+                  fit: BoxFit.cover, // Image.memory(
+                  //   dataFromBase64String(
+                  //     widget.actors.data.banner[0].image == null
+                  //       ? ""
+                  //       : widget.actors.data.banner[0].image
+                  //   ),
+                ),
+              ),
             ),
           ],
         ),
@@ -78,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TabItem(icon: Icons.notifications, title: ''),
           TabItem(icon: Icons.person, title: ''),
         ],
-        initialActiveIndex: 0, //optional, default as 0
+        initialActiveIndex: 2, //optional, default as 0
         onTap: (int index) {
           setState(() {
             selectedPage = index;

@@ -3,6 +3,7 @@ import 'package:CreateMotionsTask/models/actors_model.dart';
 import 'package:CreateMotionsTask/presenter/actor_presenter.dart';
 import 'package:CreateMotionsTask/widgets/actors_grid.dart';
 import 'package:CreateMotionsTask/widgets/categories_list.dart';
+import 'package:CreateMotionsTask/widgets/followers_list.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -40,7 +41,7 @@ class _MainScreenState extends State<MainScreen> implements ActorsContract {
             backgroundColor: Colors.grey,
             valueColor: new AlwaysStoppedAnimation<Color>(Colors.cyan),
           ))
-        : actors.data.followers.length == 0
+        : actors.data.banner.length == 0
             ? Center(
                 child: Text(
                   'No actors to show!!!',
@@ -54,28 +55,34 @@ class _MainScreenState extends State<MainScreen> implements ActorsContract {
             : Scaffold(
                 backgroundColor: Colors.grey.shade200,
                 body: ListView(
-                  // shrinkWrap: true,
-                  physics: AlwaysScrollableScrollPhysics(),
                   children: [
                     Container(
                       width: double.infinity,
-                      height: 150,
+                      height: 110,
                       margin: EdgeInsets.only(
                         top: 15,
                       ),
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: actors.data.followers.length,
+                          itemCount: actors.data.banner.length,
                           itemBuilder: (BuildContext ctx, int index) {
-                            return CategorisList(
-                              actors: actors
+                            return CategorisList(actors: actors);
+                          }),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 40,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: actors.data.followers.length,
+                          itemBuilder: (BuildContext ctx, int i) {
+                            return FollowersList(
+                              actors: actors,
+                              index: i,
                             );
                           }),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    //  ActorsGrid(),
+                    ActorsGrid(actors: actors,),
                   ],
                 ),
               );
@@ -87,7 +94,7 @@ class _MainScreenState extends State<MainScreen> implements ActorsContract {
     setState(() {
       _isLoading = true;
     });
-    print('######### doctors loaded successfully ${actors.data.followers.length}');
+    print('######### doctors loaded successfully ${actors.data.banner.length}');
   }
 
   @override

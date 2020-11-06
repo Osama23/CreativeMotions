@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:CreateMotionsTask/models/actors_model.dart';
 import 'package:flutter/material.dart';
 
@@ -31,27 +34,15 @@ class _CategorisListState extends State<CategorisList> {
             width: 100,
             height: 100,
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/man.png',
-                  fit: BoxFit.cover,
-                  width: 25,
-                  height: 25,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text('passs name'),
-              ],
-            ),
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
         ],
       ),
     );
+  }
+
+  Uint8List dataFromBase64String(String base64String) {
+    return base64Decode(base64String);
   }
 }

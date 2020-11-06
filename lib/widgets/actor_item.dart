@@ -1,4 +1,5 @@
 import 'package:CreateMotionsTask/helpers/responsive_ui.dart';
+import 'package:CreateMotionsTask/widgets/actor_profile.dart';
 import 'package:flutter/material.dart';
 
 class ActorItem extends StatefulWidget {
@@ -20,54 +21,96 @@ class _ActorItemState extends State<ActorItem> {
     _pixelRatio = MediaQuery.of(context).devicePixelRatio;
     _large = ResponsiveWidget.isScreenLarge(_width, _pixelRatio);
     _medium = ResponsiveWidget.isScreenMedium(_width, _pixelRatio);
-
-    return FittedBox(
-      child: Container(
-        width: _width,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: GridTile(
-            child: Card(
-              margin: EdgeInsets.all(4),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              elevation: 5.0,
-              color: Color(0XffF7F7F7),
-              child: Container(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding: EdgeInsets.only(
-                            left: 8, right: 8, top: 8, bottom: 12),
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1.0, color: Colors.cyan),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        height: (MediaQuery.of(context).size.height -
-                                (_large ? 20 : 18)) /
-                            3.5, // 3 - 19.5,                                 4 ,
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Flexible(
-                              flex: 3,
-                              child: Image.asset('assets/man.png'),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+    return InkWell(
+      onTap: () {},
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 4,
+        margin: EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            
+            Stack(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  ),
+                  child: Image.asset(
+                    'assets/man.png',
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                  // child: Image.network(
+                  //   imageUrl,
+                  //   height: 250,
+                  //   width: double.infinity,
+                  //   fit: BoxFit.cover,
+                  // ),
                 ),
+                Positioned(
+                  top: 20,
+                  right: 30,
+                  child: Container(
+                    width: 20,
+                  //  color: Colors.black54,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 5,
+                    ),
+                    child: Icon(
+                      Icons.favorite_border_outlined,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.favorite_border_outlined,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text('247'),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.comment,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text('57'),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.share,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text('33'),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
